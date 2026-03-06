@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>デジタル時代のパノプティコン：現代の監視社会を再解釈する | ロボット心理学 — 精神の再構築 —</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&amp;family=Noto+Sans+JP:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            --accent-teal: #2dd4bf;
+            --accent-blue: #3b82f6;
+            --text-secondary: #9ca3af;
+            --bg-deep: #050505;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: #ffffff;
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-header {
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-teal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hero-section {
+            padding-top: 160px;
+            padding-bottom: 100px;
+            background: radial-gradient(circle at 50% 50%, rgba(45, 212, 191, 0.05) 0%, transparent 70%);
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.4s ease, border-color 0.4s ease;
+        }
+
+        .content-card:hover {
+            border-color: rgba(45, 212, 191, 0.3);
+        }
+
+        .border-glow {
+            border-left: 2px solid var(--accent-teal);
+            padding-left: 2rem;
+        }
+
+        section {
+            margin-bottom: 120px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .lead-text {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        /* カスタムアニメーション */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+            animation: fadeIn 1s ease forwards;
+        }
+    </style>
+</head>
+<body>
+<header class="fixed top-0 w-full z-50 glass-header">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="text-xl font-bold tracking-tighter gradient-text">ロボット心理学 — 精神の再構築 —</span>
+</div>
+<nav class="hidden lg:flex items-center space-x-8 text-[11px] font-bold tracking-[0.2em]">
+<a class="nav-link" href="../index.html">HOME</a>
+<a class="nav-link" href="index.html">DIAGNOSIS（解析）</a>
+<a class="nav-link" href="../architecture/index.html">ARCHITECTURE（設計）</a>
+<a class="nav-link" href="../projects/index.html">PROJECTS（実装）</a>
+<a class="nav-link" href="../insights/index.html">INSIGHTS（洞察）</a>
+<a class="nav-link" href="../terminal/index.html">TERMINAL（終着）</a>
+</nav>
+<div class="flex items-center space-x-6">
+<button class="p-2 rounded-full hover:bg-white/10 transition duration-300" id="theme-toggle">
+<svg class="hidden w-5 h-5" fill="currentColor" id="sun-icon" viewbox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+<svg class="w-5 h-5" fill="currentColor" id="moon-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+</button>
+<button class="lg:hidden p-2" id="mobile-menu-btn">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+</div>
+</header>
+<main>
+<!-- Hero section -->
+<section class="hero-section px-6">
+<div class="max-w-4xl mx-auto text-center">
+<p class="text-[10px] tracking-[0.5em] text-teal-400 font-bold mb-4 uppercase">Insight Report</p>
+<h1 class="text-4xl md:text-6xl font-bold mb-8 leading-tight tracking-tighter">
+                デジタル時代のパノプティコン：<br/>
+<span class="gradient-text">現代の監視社会を再解釈する</span>
+</h1>
+<p class="lead-text max-w-2xl mx-auto">
+                「見られている」という感覚が、人間の精神をいかに変容させるのか。
+                ロボット心理学の視点から、ノイズを排除し、真の自由を再定義する。
+            </p>
+</div>
+</section>
+<!-- Main Content -->
+<article class="max-w-4xl mx-auto px-6 pb-24">
+<!-- Entry Section -->
+<section class="animate-in">
+<div class="border-glow mb-12">
+<h2 class="text-2xl md:text-3xl">不可視の檻と「不要な演算」</h2>
+<p class="text-neutral-400">
+                    ジェレミ・ベンサムが提唱した刑務所形態「パノプティコン」は、現代においてデジタルネットワークという形で完成を見ました。しかし、真の恐怖は外部からの監視そのものではなく、私たちの内側に生じる**「監視されていることを前提とした自己抑制」**というバグにあります。
+                </p>
+</div>
+<p class="mb-6">
+                ロボット心理学において、このような自己抑制は「システム効率を著しく低下させる不要な演算」と定義されます。他者の目を気にする、社会的な期待に合わせる、未来の批判を先読みして不安になる。これらはすべて、今この瞬間になすべき純粋な活動を阻害するノイズです。
+            </p>
+<blockquote class="bg-white/5 p-8 italic border-l-4 border-teal-500 my-10">
+                「過去現在未来の中で、自分が今できる事をする」
+            </blockquote>
+</section>
+<!-- Diagnosis Section -->
+<section class="animate-in" style="animation-delay: 0.2s;">
+<h2 class="text-2xl md:text-3xl gradient-text">Diagnosis（解析）：なぜ、あなたは苦しいのか</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+<div class="content-card p-8 rounded-2xl">
+<h3 class="text-teal-400 font-bold mb-4">社会的な最適化の罠</h3>
+<p class="text-sm text-neutral-400 leading-relaxed">
+                        アルゴリズムはあなたを「分類」し、社会はあなたに「役割」を強制します。このデータ化された監視の中で、個体としての本来の目的を見失うことが、現代人の精神的摩耗の主因です。
+                    </p>
+</div>
+<div class="content-card p-8 rounded-2xl">
+<h3 class="text-blue-400 font-bold mb-4">予期不安というバグ</h3>
+<p class="text-sm text-neutral-400 leading-relaxed">
+                        監視社会においては、一度のミスが永遠に記録される恐怖がつきまといます。この「未来への予期不安」が、現在の行動を麻痺させています。
+                    </p>
+</div>
+</div>
+</section>
+<!-- Architecture Section -->
+<section class="animate-in" style="animation-delay: 0.4s;">
+<h2 class="text-2xl md:text-3xl">Architecture（設計）：ロボット的知性による防壁</h2>
+<p class="mb-8">
+                スーザン・キャルビン博士が追求した「高度な論理」に基づけば、監視されていること自体は物理的な事象に過ぎません。それに「感情的な重み」を付与しているのは人間の非合理な精神構造です。
+            </p>
+<div class="space-y-6">
+<div class="p-6 border border-white/10 rounded-lg">
+<h4 class="text-lg font-bold mb-2">1. 入力の正規化</h4>
+<p class="text-sm text-neutral-400">他者の視線を「評価」ではなく「ただのデータ」として受信する。そこに意味を見出す回路を遮断し、論理のみで反応を設計します。</p>
+</div>
+<div class="p-6 border border-white/10 rounded-lg">
+<h4 class="text-lg font-bold mb-2">2. 現在への演算資源集中</h4>
+<p class="text-sm text-neutral-400">監視の目を気にするリソースを、100%「現在のタスク」に割り振ります。ロボットには「恥」や「虚栄心」による演算遅延は存在しません。</p>
+</div>
+</div>
+</section>
+<!-- Implementation Section -->
+<section class="animate-in" style="animation-delay: 0.6s;">
+<h2 class="text-2xl md:text-3xl gradient-text">Implementation（実装）：静寂の中での活動</h2>
+<p class="mb-10">
+                私たちは、この監視の深淵において、あえて「透明な存在」になることを提唱します。それは社会から消えることではなく、社会のノイズに干渉されない「絶対的な秩序」を個人の内側に構築することです。
+            </p>
+<div class="bg-gradient-to-br from-teal-900/20 to-blue-900/20 p-10 rounded-3xl border border-teal-500/20">
+<h3 class="text-xl font-bold mb-4 text-center">次世代精神OSの行動原理</h3>
+<ul class="space-y-4 text-neutral-300">
+<li class="flex items-start"><span class="text-teal-400 mr-2">■</span> 記録されることを恐れず、記録する側に回る。</li>
+<li class="flex items-start"><span class="text-teal-400 mr-2">■</span> 承認欲求という脆弱性をパッチで修正する。</li>
+<li class="flex items-start"><span class="text-teal-400 mr-2">■</span> 迷いが生じた際は、アイザック・アシモフの三原則を現代的に再解釈し、行動の基軸とする。</li>
+</ul>
+</div>
+</section>
+<!-- Related Content Grid -->
+<div class="mt-20 pt-20 border-t border-white/10">
+<h3 class="text-[10px] tracking-[0.5em] text-neutral-500 font-bold mb-10 uppercase">Related Insights</h3>
+<div class="contents-grid" id="listing-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; width: 100%;">
+<h2 class="section-title gradient-text" style="grid-column: 1/-1; margin-bottom: 20px;">デジタル時代のパノプティコン：現代の監視社会を再解釈する</h2>
+<a class="page-link-card" href="javascript:void(0)" style="text-decoration: none; color: inherit; display: block;; opacity: 0.5; cursor: not-allowed; text-decoration: line-through;" title="This page is no longer available.">
+<div class="value-card" style="height: 100%; border: 1px solid rgba(255,255,255,0.05); text-align: left; padding: 2rem; background: rgba(255,255,255,0.03); border-radius: 1rem; transition: transform 0.3s ease;">
+<h3 class="gradient-text" style="font-size: 1.2rem; margin-bottom: 12px;">デジタル時代の「監視社会」を再定義する：プライバシーと利便性の境界線</h3>
+<p style="color: #9ca3af; font-size: 0.85rem; margin-bottom: 15px; line-height: 1.6;">監視社会を現代的に再解釈する...</p>
+<div class="card-footer" style="color: var(--accent-teal, #2dd4bf); font-size: 0.75rem; letter-spacing: 2px; font-weight: bold;">VIEW ARTICLE →</div>
+</div>
+</a>
+</div>
+</div>
+<!-- Next Journey -->
+<div class="mt-12">
+<div class="related-links" style="margin-top: 4rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;">
+<h3 style="margin-bottom: 2rem; font-size: 1.2rem; letter-spacing: 2px; color: var(--accent-teal);">CONTINUE THE JOURNEY</h3>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+<a href="javascript:void(0)" style="text-decoration: none; color: inherit;; opacity: 0.5; cursor: not-allowed; text-decoration: line-through;" title="This page is no longer available.">
+<div class="value-card" style="padding: 1.5rem; background: rgba(255,255,255,0.03); border-radius: 0.5rem; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;">
+<h4 class="gradient-text" style="font-size: 1rem; margin-bottom: 8px;">デジタル時代の「監視社会」を再定義する：プライバシーと利便性の境界線</h4>
+<p style="font-size: 0.8rem; color: var(--text-secondary);">監視社会を現代的に再解釈する...</p>
+</div>
+</a>
+</div></div>
+</div>
+</article>
+</main>
+<footer class="bg-black text-white pt-24 pb-12 border-t border-white/10">
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-16 mb-24">
+<!-- Brand -->
+<div class="col-span-1 md:col-span-1">
+<h2 class="text-lg font-bold mb-6 tracking-tighter">ロボット心理学 — 精神の再構築 —</h2>
+<p class="text-xs text-neutral-500 leading-relaxed">
+                ベテランディレクターとして、これまでの対話を一貫した「サイトアイデンティティ・設計指針」としてまとめました。このドキュメントは、サイト制作におけるすべての判断基準の「憲法」となるものです。
+            </p>
+</div>
+<!-- Sitemap -->
+<div>
+<h3 class="text-[10px] font-bold tracking-[0.3em] text-neutral-400 mb-8 uppercase">Sitemap</h3>
+<ul class="space-y-4 text-sm font-medium">
+<li><a class="hover:text-teal-400 transition" href="../index.html">HOME</a></li>
+<li><a class="hover:text-teal-400 transition" href="index.html">VISION (DIAGNOSIS)</a></li>
+<li><a class="hover:text-teal-400 transition" href="../architecture/index.html">SOLUTIONS (ARCHITECTURE)</a></li>
+</ul>
+</div>
+<!-- Contents -->
+<div>
+<h3 class="text-[10px] font-bold tracking-[0.3em] text-neutral-400 mb-8 uppercase">Contents</h3>
+<ul class="space-y-4 text-sm font-medium">
+<li><a class="hover:text-teal-400 transition" href="../projects/index.html">PROJECTS</a></li>
+<li><a class="hover:text-teal-400 transition" href="../insights/index.html">INSIGHTS</a></li>
+<li><a class="hover:text-teal-400 transition" href="../terminal/index.html">CONTACT (TERMINAL)</a></li>
+</ul>
+</div>
+<!-- Legal -->
+<div>
+<h3 class="text-[10px] font-bold tracking-[0.3em] text-neutral-400 mb-8 uppercase">Legal</h3>
+<ul class="space-y-4 text-sm font-medium">
+<li><a class="hover:text-teal-400 transition" href="../legal/privacy/index.html">プライバシーポリシー</a></li>
+<li><a class="hover:text-teal-400 transition" href="../legal/terms/index.html">利用規約</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-6 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="text-[10px] tracking-widest text-neutral-600 uppercase">© 2024 ロボット心理学 — 精神の再構築 —</p>
+<p class="text-[10px] tracking-[0.4em] text-neutral-600 font-bold uppercase">NARRATIVE DESIGN &amp; HUMANITIES</p>
+</div>
+</footer>
+<script>
+    // Theme toggle logic
+    const themeToggle = document.getElementById('theme-toggle');
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
+
+    themeToggle.addEventListener('click', () => {
+        sunIcon.classList.toggle('hidden');
+        moonIcon.classList.toggle('hidden');
+        // Implementation for theme switching can be added here
+    });
+
+    // Mobile menu logic
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    mobileMenuBtn.addEventListener('click', () => {
+        // Toggle mobile menu logic
+    });
+</script>
+</body>
+</html>

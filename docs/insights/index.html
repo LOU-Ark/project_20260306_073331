@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>INSIGHTS（洞察） | ロボット心理学 — 精神の再構築 —</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;family=Noto+Sans+JP:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            --accent-teal: #2dd4bf;
+            --accent-blue: #3b82f6;
+            --text-secondary: #9ca3af;
+            --bg-deep: #05070a;
+        }
+        body {
+            background-color: var(--bg-deep);
+            color: #ffffff;
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            overflow-x: hidden;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-header {
+            background: rgba(5, 7, 10, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-teal);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .insight-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .insight-card:hover {
+            border-color: var(--accent-teal);
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.04);
+        }
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+        }
+        .floating-light {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(45, 212, 191, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+<header class="fixed top-0 w-full z-50 glass-header">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="text-xl font-bold tracking-tighter gradient-text">ロボット心理学 — 精神の再構築 —</span>
+</div>
+<nav class="hidden lg:flex items-center space-x-8 text-[11px] font-bold tracking-[0.2em]">
+<a class="nav-link" href="../index.html">HOME</a>
+<a class="nav-link" href="../diagnosis/index.html">DIAGNOSIS（解析）</a>
+<a class="nav-link" href="../architecture/index.html">ARCHITECTURE（設計）</a>
+<a class="nav-link" href="../projects/index.html">PROJECTS（実装）</a>
+<a class="nav-link" href="index.html">INSIGHTS（洞察）</a>
+<a class="nav-link" href="../terminal/index.html">TERMINAL（終着）</a>
+</nav>
+<div class="flex items-center space-x-6">
+<button class="p-2 rounded-full hover:bg-white/10 transition duration-300" id="theme-toggle">
+<svg class="hidden w-5 h-5" fill="currentColor" id="sun-icon" viewbox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+<svg class="w-5 h-5" fill="currentColor" id="moon-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+</button>
+<button class="lg:hidden p-2" id="mobile-menu-btn">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+</div>
+</header>
+<main class="relative pt-32 pb-24">
+<!-- Background elements -->
+<div class="floating-light top-20 right-[10%]"></div>
+<div class="floating-light bottom-[10%] left-[5%]"></div>
+<div class="max-w-5xl mx-auto px-6">
+<!-- Hero section -->
+<section class="mb-32">
+<span class="text-[10px] font-bold tracking-[0.5em] text-teal-400 uppercase block mb-4">Intellectual Authority</span>
+<h1 class="text-5xl md:text-7xl font-bold tracking-tighter mb-8">INSIGHTS<span class="text-neutral-600 block text-2xl mt-4 font-light tracking-widest">SF的知見とデータサイエンスの融合</span></h1>
+<p class="text-lg text-neutral-400 leading-relaxed max-w-3xl">
+                    不確実な時代を生き抜くための「精神の生存戦略」。<br/>
+                    アイザック・アシモフが描いた論理の美学と、現代の高度なデータサイエンスを交差させ、ノイズ（不安）を排した純粋な活動状態への道筋を提示します。
+                </p>
+</section>
+<!-- Detailed Insights Content -->
+<div class="grid grid-cols-1 gap-24">
+<!-- Theory -->
+<section class="group">
+<div class="flex flex-col md:flex-row gap-12 items-start">
+<div class="w-full md:w-1/3">
+<h2 class="text-xs font-bold tracking-[0.3em] text-neutral-500 uppercase mb-4">Theory: 01</h2>
+<h3 class="text-3xl font-bold leading-tight mb-6 group-hover:text-teal-400 transition">スザンヌ・キャルビンに学ぶ、非線形な時代を生き抜くための論理性</h3>
+</div>
+<div class="w-full md:w-2/3 text-neutral-400 leading-relaxed space-y-6">
+<p>
+                                伝説的なロボット心理学者スザンヌ・キャルビン博士。彼女が向き合ったのは「論理の矛盾」でした。現代社会において私たちが抱える「不要な不安」は、まさに人間の精神における論理的矛盾、すなわちバグです。
+                            </p>
+<p>
+                                ロボット三原則のような「根源的な制約」は、一見自由を奪うものに見えます。しかし、設計思想の本質は、制約によって**「演算の迷いを消し去ること」**にあります。選択肢が無限にある現代において、私たちは自らに論理的制約を課すことで、初めて「今できる事」への純粋な集中を手に入れることができるのです。
+                            </p>
+</div>
+</div>
+</section>
+<div class="section-divider"></div>
+<!-- Tech & Ethics -->
+<section class="group">
+<div class="flex flex-col md:flex-row gap-12 items-start">
+<div class="w-full md:w-1/3">
+<h2 class="text-xs font-bold tracking-[0.3em] text-neutral-500 uppercase mb-4">Tech &amp; Ethics: 02</h2>
+<h3 class="text-3xl font-bold leading-tight mb-6 group-hover:text-teal-400 transition">「不要な不安」を定量化する：データサイエンスによる精神の浄化</h3>
+</div>
+<div class="w-full md:w-2/3 text-neutral-400 leading-relaxed space-y-6">
+<p>
+                                最新のデータ解析技術は、もはや外部の市場予測だけのものではありません。私たちは「内なるノイズ」を定量化し、それを「不要な演算」として排除するフェーズに入っています。
+                            </p>
+<p>
+                                未来への予期不安や過去への後悔は、データサイエンスの視点から見れば、精度に寄与しない低質なノイズに過ぎません。AI倫理における「公平性の定義」と同様に、個人の意思決定プロセスからバイアスを削ぎ落とし、最短経路で「真に成すべきこと」へとアルゴリズムを最適化する。これこそが、技術が人間に提供できる真の救済です。
+                            </p>
+</div>
+</div>
+</section>
+<div class="section-divider"></div>
+<!-- Column -->
+<section class="group mb-24">
+<div class="flex flex-col md:flex-row gap-12 items-start">
+<div class="w-full md:w-1/3">
+<h2 class="text-xs font-bold tracking-[0.3em] text-neutral-500 uppercase mb-4">Operational Logic: 03</h2>
+<h3 class="text-3xl font-bold leading-tight mb-6 group-hover:text-teal-400 transition">バグとしての後悔、ノイズとしての予期不安。現在を最適化する運用マニュアル</h3>
+</div>
+<div class="w-full md:w-2/3 text-neutral-400 leading-relaxed space-y-6">
+<p>
+                                精神の再構築（リブート）は、日々の運用から始まります。私たちの脳は、放置すれば非効率なループを繰り返す習性があります。
+                            </p>
+<p>
+                                「過去現在未来の中で、自分が今できる事をする」。このシンプルな一文を、精神OSのルートディレクトリに配置してください。過去の修正不可能なデータへのアクセスを禁止し、未来の不確実なシミュレーションの優先順位を最下位まで下げる。この「運用指針」を徹底することで、あなたは生物的な限界以外のあらゆる制約から解放され、澱みのない世界を歩み始めることになります。
+                            </p>
+</div>
+</div>
+</section>
+</div>
+<!-- Content Grid Placement -->
+<section class="py-24 border-t border-white/5">
+<div class="flex items-center justify-between mb-12">
+<h2 class="text-2xl font-bold tracking-tight">LATEST ARTICLES</h2>
+</div>
+<div class="contents-grid" id="listing-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; width: 100%;">
+<div class="contents-grid" id="listing-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; width: 100%;">
+<style>
+    #listing-grid .value-card {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 32px;
+      height: 100%;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    #listing-grid .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at top left, rgba(0, 242, 255, 0.05), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    #listing-grid a:hover .value-card {
+      transform: translateY(-12px);
+      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    #listing-grid a:hover .value-card::before {
+      opacity: 1;
+    }
+    #listing-grid .gradient-text {
+      background: linear-gradient(135deg, #ffffff 0%, #888888 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: "Inter", "Noto Sans JP", sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.5;
+      margin: 0 0 16px 0;
+      letter-spacing: -0.02em;
+    }
+    #listing-grid p {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin: 0;
+      font-weight: 300;
+    }
+    #listing-grid .card-footer {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #00f2ff;
+      opacity: 0.8;
+    }
+  </style>
+<a href="art_20260306_101609-1.html" style="text-decoration: none; color: inherit; display: block;">
+<div class="value-card">
+<div>
+<h3 class="gradient-text">監視社会の変遷：『1984』から『サイコパス』まで、描かれた管理社会の恐怖と進化</h3>
+<p>監視社会を題材にした映画「1984」から日本のアニメ「サイコパス」まで、精神の自由と管理の境界線を紐解く。</p>
+</div>
+</div>
+</a></div></div></section>
+<!-- Custom Next Journey -->
+<section class="mt-32 pt-24 border-t border-white/10">
+<div class="bg-gradient-to-br from-neutral-900 to-black p-12 rounded-2xl border border-white/5 relative overflow-hidden group">
+<div class="relative z-10">
+<h2 class="text-3xl font-bold mb-6">解析を完了し、実装へ。</h2>
+<p class="text-neutral-400 mb-8 max-w-2xl text-lg leading-relaxed">
+                            洞察は行動に変換されて初めて価値を持ちます。あなたの精神のバグを特定し、論理的な一貫性を取り戻すための具体的なプロジェクトをご案内します。
+                        </p>
+<div class="related-links" style="margin-top: 4rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;">
+<h3 style="margin-bottom: 2rem; font-size: 1.2rem; letter-spacing: 2px; color: var(--accent-teal);">NEXT STEP: TERMINAL（終着）</h3>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+<a href="../terminal/index.html" style="text-decoration: none; color: inherit;">
+<div class="value-card" style="padding: 1.5rem; background: rgba(255,255,255,0.03); border-radius: 0.5rem; border: 1px solid rgba(45, 212, 191, 0.3); transition: 0.3s;">
+<h4 class="gradient-text" style="font-size: 1rem; margin-bottom: 8px;">TERMINAL（終着）</h4>
+<p style="font-size: 0.8rem; color: var(--text-secondary);">迷いを消し去った後の静かな肯定を提供し、具体的なコンタクトやアクションへと繋げるための最終的なインターフェース。...</p>
+<div style="margin-top: 10px; font-size: 0.7rem; font-weight: bold; color: var(--accent-teal);">RECOMMENDED NEXT STEP →</div>
+</div>
+</a>
+<a href="../diagnosis/index.html" style="text-decoration: none; color: inherit;">
+<div class="value-card" style="padding: 1.5rem; background: rgba(255,255,255,0.03); border-radius: 0.5rem; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;">
+<h4 class="gradient-text" style="font-size: 1rem; margin-bottom: 8px;">DIAGNOSIS（解析）</h4>
+<p style="font-size: 0.8rem; color: var(--text-secondary);">現代人が抱える「不要な不安」をシステム上のバグとして特定し、環境との不一致をロボット心理学の視点から解析する。...</p>
+</div>
+</a>
+<a href="../legal/privacy/index.html" style="text-decoration: none; color: inherit;">
+<div class="value-card" style="padding: 1.5rem; background: rgba(255,255,255,0.03); border-radius: 0.5rem; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;">
+<h4 class="gradient-text" style="font-size: 1rem; margin-bottom: 8px;">プライバシーポリシー</h4>
+<p style="font-size: 0.8rem; color: var(--text-secondary);">データの取り扱いに関する論理的透明性を確保し、法的な信頼性を担保する。...</p>
+</div>
+</a>
+</div></div>
+</div>
+<div class="absolute top-0 right-0 w-64 h-64 bg-teal-400/5 blur-[100px] rounded-full group-hover:bg-teal-400/10 transition-all duration-700"></div>
+</div>
+</section>
+</div>
+</main>
+<footer class="bg-black text-white pt-24 pb-12 border-t border-white/10">
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-16 mb-24">
+<!-- Brand -->
+<div class="col-span-1 md:col-span-1">
+<h2 class="text-lg font-bold mb-6 tracking-tighter">ロボット心理学 — 精神の再構築 —</h2>
+<p class="text-xs text-neutral-500 leading-relaxed">
+                    ベテランディレクターとして、これまでの対話を一貫した「サイトアイデンティティ・設計指針」としてまとめました。このドキュメントは、サイト制作におけるすべての判断基準の「憲法」となるものです。
+                </p>
+</div>
+<!-- Sitemap -->
+<div>
+<h3 class="text-[10px] font-bold tracking-[0.3em] text-neutral-400 mb-8 uppercase">Sitemap</h3>
+<ul class="space-y-4 text-sm font-medium">
+<li><a class="hover:text-teal-400 transition" href="../index.html">HOME</a></li>
+<li><a class="hover:text-teal-400 transition" href="../diagnosis/index.html">VISION (DIAGNOSIS)</a></li>
+<li><a class="hover:text-teal-400 transition" href="../architecture/index.html">SOLUTIONS (ARCHITECTURE)</a></li>
+</ul>
+</div>
+<!-- Contents -->
+<div>
+<h3 class="text-[10px] font-bold tracking-[0.3em] text-neutral-400 mb-8 uppercase">Contents</h3>
+<ul class="space-y-4 text-sm font-medium">
+<li><a class="hover:text-teal-400 transition" href="../projects/index.html">PROJECTS</a></li>
+<li><a class="hover:text-teal-400 transition" href="index.html">INSIGHTS</a></li>
+<li><a class="hover:text-teal-400 transition" href="../terminal/index.html">CONTACT (TERMINAL)</a></li>
+</ul>
+</div>
+<!-- Legal -->
+<div>
+<h3 class="text-[10px] font-bold tracking-[0.3em] text-neutral-400 mb-8 uppercase">Legal</h3>
+<ul class="space-y-4 text-sm font-medium">
+<li><a class="hover:text-teal-400 transition" href="../legal/privacy/index.html">プライバシーポリシー</a></li>
+<li><a class="hover:text-teal-400 transition" href="../legal/terms/index.html">利用規約</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-6 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="text-[10px] tracking-widest text-neutral-600 uppercase">© 2024 ロボット心理学 — 精神の再構築 —</p>
+<p class="text-[10px] tracking-[0.4em] text-neutral-600 font-bold uppercase">NARRATIVE DESIGN &amp; HUMANITIES</p>
+</div>
+</footer>
+<script>
+        // Simple theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+        
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            sunIcon.classList.toggle('hidden');
+            moonIcon.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
