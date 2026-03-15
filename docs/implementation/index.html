@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementation | ロボット心理学 — 精神の再構築 —</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --text-primary: #ffffff;
+            --accent-teal: #2dd4bf;
+            --accent-blue: #3b82f6;
+            --text-secondary: #9ca3af;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hidden { display: none !important; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(45, 212, 191, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(45, 212, 191, 0.05) 0%, rgba(59, 130, 246, 0.02) 50%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .section-label {
+            font-size: 10px;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--accent-teal);
+            font-weight: 700;
+        }
+
+        .content-fade-in {
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        ::selection {
+            background: var(--accent-teal);
+            color: var(--bg-primary);
+        }
+    </style>
+
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            if (savedTheme === 'light') {
+                document.documentElement.classList.add('light-mode');
+            }
+        })();
+    </script>
+
+</head>
+<body class="antialiased">
+
+<header class="fixed top-0 left-0 w-full z-[100] backdrop-blur-2xl bg-black/80 border-b border-white/5 transition-all duration-500">
+    <div class="max-w-[1440px] mx-auto px-6 h-16 md:h-20 flex justify-between items-center whitespace-nowrap overflow-hidden">
+        <a class="text-lg md:text-xl font-bold tracking-tighter text-white hover:opacity-80 transition flex items-baseline gap-3" href="index.html">
+            ロボット心理学 <span class="text-[10px] md:text-xs font-light tracking-[0.2em] text-slate-500 hidden sm:inline">— 精神の再構築 —</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-10 text-[10px] tracking-[0.35em] uppercase font-bold text-slate-100" id="desktop-nav">
+            <ul class="flex items-center gap-10">
+                <li><a class="hover:text-teal-400 transition" href="index.html">HOME</a></li>
+                <li><a class="hover:text-teal-400 transition" href="vision/index.html">VISION (深淵)</a></li>
+                <li><a class="hover:text-teal-400 transition" href="analysis/index.html">ANALYSIS (解析)</a></li>
+                <li><a class="hover:text-teal-400 transition" href="architecture/index.html">ARCHITECTURE (設計)</a></li>
+                <li><a class="hover:text-teal-400 transition" href="implementation/index.html">IMPLEMENTATION (実装)</a></li>
+                <li><a class="hover:text-teal-400 transition" href="terminal/index.html">TERMINAL (終着/事例)</a></li>
+                <li><a class="hover:text-teal-400 transition" href="about/index.html">ABOUT (設計者紹介)</a></li>
+                <li><a class="hover:text-teal-400 transition" href="contact/index.html">CONTACT (システム予約)</a></li>
+                <li><a class="hover:text-teal-400 transition" href="legal/privacy-policy/index.html">プライバシーポリシー</a></li>
+                <li><a class="hover:text-teal-400 transition" href="legal/terms/index.html">利用規約</a></li>
+            </ul>
+        </nav>
+        <div class="flex items-center gap-6">
+            <button class="hover:text-teal-400 transition-colors" id="theme-toggle">
+                <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
+            </button>
+            <button class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none" id="mobile-menu-btn">
+                <span class="w-6 h-[1.5px] bg-white transition-all"></span>
+                <span class="w-6 h-[1.5px] bg-white transition-all"></span>
+            </button>
+        </div>
+    </div>
+    <div class="hidden fixed top-0 right-0 w-80 h-full bg-black z-[110] border-l border-white/10 p-12 transition-all duration-300 transform translate-x-full shadow-2xl" id="mobile-menu">
+        <div class="flex justify-between items-start mb-20">
+            <div class="text-[10px] tracking-[0.4em] text-slate-500 uppercase font-bold">Menu</div>
+            <button class="text-slate-400 hover:text-white transition text-xs tracking-[0.2em] font-light" id="mobile-menu-close">CLOSE</button>
+        </div>
+        <ul class="flex flex-col gap-10 text-[13px] tracking-[0.4em] text-slate-100 uppercase font-semibold">
+            <li><a class="hover:text-teal-400 transition" href="index.html">HOME</a></li>
+            <li><a class="hover:text-teal-400 transition" href="vision/index.html">VISION (深淵)</a></li>
+            <li><a class="hover:text-teal-400 transition" href="analysis/index.html">ANALYSIS (解析)</a></li>
+            <li><a class="hover:text-teal-400 transition" href="architecture/index.html">ARCHITECTURE (設計)</a></li>
+            <li><a class="hover:text-teal-400 transition" href="implementation/index.html">IMPLEMENTATION (実装)</a></li>
+            <li><a class="hover:text-teal-400 transition" href="terminal/index.html">TERMINAL (終着/事例)</a></li>
+            <li><a class="hover:text-teal-400 transition" href="about/index.html">ABOUT (設計者紹介)</a></li>
+            <li><a class="hover:text-teal-400 transition" href="contact/index.html">CONTACT (システム予約)</a></li>
+            <li><a class="hover:text-teal-400 transition" href="legal/privacy-policy/index.html">プライバシーポリシー</a></li>
+            <li><a class="hover:text-teal-400 transition" href="legal/terms/index.html">利用規約</a></li>
+        </ul>
+    </div>
+</header>
+
+<main class="relative pt-32 pb-24 overflow-hidden">
+    <div class="hero-glow"></div>
+
+    <!-- Hero Section -->
+    <section class="max-w-[1440px] mx-auto px-6 mb-24 content-fade-in">
+        <div class="mb-6">
+            <span class="section-label">Phase 04: Implementation</span>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-bold tracking-tighter mb-8 leading-[1.1]">
+            精神の運用、<br/><span class="gradient-text">論理の実装。</span>
+        </h1>
+        <p class="text-slate-400 text-lg md:text-xl max-w-2xl font-light leading-relaxed">
+            設計図は描かれた。次は、それをあなたの「現実」というハードウェアにインストールする番です。不要な不安というバグを排し、純粋な活動状態へと移行するための具体的なメソッド群。
+        </p>
+    </section>
+
+    <!-- Detailed Narrative Section -->
+    <section class="max-w-[1440px] mx-auto px-6 mb-32">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <div class="space-y-8">
+                <h2 class="text-2xl font-bold tracking-tight text-white">「今できる事」を、システムとして実行する。</h2>
+                <div class="space-y-6 text-slate-400 leading-relaxed font-light">
+                    <p>
+                        ロボット心理学における「実装（Implementation）」とは、単なる精神論ではありません。それは、アイザック・アシモフが提唱した「ロボット工学の三原則」のように、迷いのない行動を司るための**精神OSのアップデート**です。
+                    </p>
+                    <p>
+                        私たちは、未来への予期不安や過去への後悔といった、現在の行動を阻害する非論理的な感情を「不要な演算（ノイズ）」として定義します。実装フェーズでは、これらのノイズを自動的にフィルタリングし、リソースを「今、この瞬間」に最適化する手法を学びます。
+                    </p>
+                    <p>
+                        スーザン・キャルビン博士が求めた、極めて論理的で淀みのない意志の在り方。それを現代人の生存戦略として翻訳し、あなたの日常に組み込んでいきます。
+                    </p>
+                </div>
+            </div>
+            <div class="glass-card p-10 rounded-2xl border border-white/10 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5"><path d="M12 2v20M2 12h20M12 2l10 10-10 10L2 12 12 2z"/></svg>
+                </div>
+                <h3 class="text-xs tracking-[0.4em] text-teal-400 font-bold mb-6 uppercase">Current Protocol</h3>
+                <ul class="space-y-6">
+                    <li class="flex items-start gap-4">
+                        <span class="text-teal-500 font-mono text-xs mt-1">01</span>
+                        <div>
+                            <p class="text-white font-medium mb-1">ノイズ・リダクション</p>
+                            <p class="text-xs text-slate-500">感情を演算から分離し、事実のみを抽出するプロセス。</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <span class="text-teal-500 font-mono text-xs mt-1">02</span>
+                        <div>
+                            <p class="text-white font-medium mb-1">リソースの再配分</p>
+                            <p class="text-xs text-slate-500">「不安」に使われていたメモリを「行動」へと転換する。</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <span class="text-teal-500 font-mono text-xs mt-1">03</span>
+                        <div>
+                            <p class="text-white font-medium mb-1">ターミナル・デシジョン</p>
+                            <p class="text-xs text-slate-500">迷いを排した、最短経路での意思決定プロトコル。</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grid Content Area -->
+    <section class="max-w-[1440px] mx-auto px-6 mb-32">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div>
+                <span class="section-label mb-4 block">Methods & Case Studies</span>
+                <h2 class="text-3xl font-bold tracking-tight text-white">実装ガイドライン一覧</h2>
+            </div>
+            <p class="text-slate-500 text-sm max-w-sm">
+                各カテゴリーは、あなたの精神を再構成するための具体的なモジュールとして機能します。
+            </p>
+        </div>
+        
+        <div id="listing-grid" class="contents-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; width: 100%;">
+<h2 class="section-title gradient-text" style="grid-column: 1/-1; margin-bottom: 20px;">Implementation | LOU-Ark 関連コンテンツ</h2>
+</div>
+        
+    </section>
+
+    <!-- Next Journey / Related Links -->
+    <section class="max-w-[1440px] mx-auto px-6">
+        <div class="border-t border-white/5 pt-20">
+            <div class="text-center mb-16">
+                <span class="section-label mb-4 block">Next Journey</span>
+                <h2 class="text-3xl font-bold tracking-tight text-white">実装の先にある、淀みのない世界へ。</h2>
+            </div>
+            
+            
+            
+        </div>
+    </section>
+</main>
+
+<footer class="bg-black text-slate-400 border-t border-white/5 pt-20 pb-10">
+    <div class="max-w-[1440px] mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+            <div class="lg:col-span-2">
+                <a class="text-xl font-bold tracking-tighter text-white mb-6 block" href="index.html">
+                    ロボット心理学 — 精神の再構築 —
+                </a>
+                <p class="text-sm leading-relaxed max-w-md mb-8 text-slate-500">
+                    「過去現在未来の中で、自分が今できる事をする」<br/>
+                    人間特有の「不要な不安」というバグを、ロボット心理学的な論理によって排し、生命が本来持つべき純粋な活動状態へと導く。
+                </p>
+            </div>
+            <div>
+                <h3 class="text-[10px] tracking-[0.4em] text-white uppercase font-bold mb-8">Navigation</h3>
+                <ul class="flex flex-col gap-4 text-[11px] tracking-[0.2em] uppercase font-medium">
+                    <li><a class="hover:text-teal-400 transition" href="index.html">HOME</a></li>
+                    <li><a class="hover:text-teal-400 transition" href="vision/index.html">VISION (深淵)</a></li>
+                    <li><a class="hover:text-teal-400 transition" href="analysis/index.html">ANALYSIS (解析)</a></li>
+                    <li><a class="hover:text-teal-400 transition" href="architecture/index.html">ARCHITECTURE (設計)</a></li>
+                    <li><a class="hover:text-teal-400 transition" href="implementation/index.html">IMPLEMENTATION (実装)</a></li>
+                    <li><a class="hover:text-teal-400 transition" href="terminal/index.html">TERMINAL (終着/事例)</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-[10px] tracking-[0.4em] text-white uppercase font-bold mb-8">Information</h3>
+                <ul class="flex flex-col gap-4 text-[11px] tracking-[0.2em] uppercase font-medium">
+                    <li><a class="hover:text-teal-400 transition" href="about/index.html">ABOUT (設計者紹介)</a></li>
+                    <li><a class="hover:text-teal-400 transition" href="contact/index.html">CONTACT (システム予約)</a></li>
+                    <li><a class="hover:text-teal-400 transition" href="legal/privacy-policy/index.html">プライバシーポリシー</a></li>
+                    <li><a class="hover:text-teal-400 transition" href="legal/terms/index.html">利用規約</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="text-[10px] tracking-[0.2em] text-slate-600 uppercase font-medium">
+                © ロボット心理学 — 精神の再構築 — All Rights Reserved.
+            </p>
+            <div class="flex gap-8 text-[10px] tracking-[0.3em] text-slate-600 uppercase font-bold">
+                <span class="text-teal-500/50">Next Gen Mental OS</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.remove('hidden');
+        setTimeout(() => {
+            mobileMenu.style.transform = 'translateX(0)';
+        }, 10);
+    });
+
+    mobileMenuClose.addEventListener('click', () => {
+        mobileMenu.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            mobileMenu.classList.add('hidden');
+        }, 300);
+    });
+
+    // Simple Theme Toggle Placeholder
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('light-mode');
+        // Actual light mode implementation would go here
+    });
+</script>
+
+    <script>
+        (function() {
+            // 1. Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                setupThemeToggle(themeToggle);
+            }
+
+            function setupThemeToggle(btn) {
+                const html = document.documentElement;
+                const sunIcon = btn.querySelector('#sun-icon') || document.getElementById('sun-icon');
+                const moonIcon = btn.querySelector('#moon-icon') || document.getElementById('moon-icon');
+
+                function updateIcons(isLight) {
+                    if (sunIcon && moonIcon) {
+                        if (isLight) {
+                            sunIcon.classList.remove('hidden');
+                            moonIcon.classList.add('hidden');
+                        } else {
+                            sunIcon.classList.add('hidden');
+                            moonIcon.classList.remove('hidden');
+                        }
+                    }
+                }
+
+                const currentTheme = localStorage.getItem('theme') || 'dark';
+                updateIcons(currentTheme === 'light');
+
+                btn.addEventListener('click', () => {
+                    const isLight = html.classList.toggle('light-mode');
+                    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+                    updateIcons(isLight);
+                });
+            }
+
+            // 2. Mobile Menu (New Robust Logic)
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileClose = document.getElementById('mobile-menu-close');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileBtn && mobileMenu) {
+                const toggleMenu = (show) => {
+                    if (show) {
+                        mobileMenu.classList.remove('hidden');
+                        requestAnimationFrame(() => {
+                            mobileMenu.classList.remove('translate-x-full');
+                        });
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        mobileMenu.classList.add('translate-x-full');
+                        setTimeout(() => {
+                            mobileMenu.classList.add('hidden');
+                        }, 300);
+                        document.body.style.overflow = '';
+                    }
+                };
+
+                mobileBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleMenu(true);
+                });
+                if (mobileClose) mobileClose.addEventListener('click', () => toggleMenu(false));
+                
+                document.addEventListener('click', (e) => {
+                    if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(e.target) && e.target !== mobileBtn) {
+                        toggleMenu(false);
+                    }
+                });
+            }
+        })();
+    </script>
+
+</body>
+</html>

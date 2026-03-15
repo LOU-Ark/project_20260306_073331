@@ -1,0 +1,67 @@
+[
+  {
+    "title": "ホーム",
+    "file_name": "index.html",
+    "purpose": "「過去現在未来の中で、今できる事をする」という核心的アイデンティティを提示し、サイト全体の論理的トーンを定義する。"
+  },
+  {
+    "title": "DIAGNOSIS（解析）",
+    "file_name": "diagnosis/index.html",
+    "purpose": "現代人が抱える「不要な不安」をシステム上のバグとして特定し、環境との不一致をロボット心理学の視点から解析する。"
+  },
+  {
+    "title": "ARCHITECTURE（設計）",
+    "file_name": "architecture/index.html",
+    "purpose": "ノイズを排し現在を最適化するための「精神の設計思想」を詳解し、次世代の精神OSとしての論理的枠組みを提示する。"
+  },
+  {
+    "title": "PROJECTS（実装）",
+    "file_name": "projects/index.html",
+    "purpose": "AI倫理やメンタルアーキテクチャの具体的事例（ケーススタディ）を通じ、哲学を実務的価値へと変換する手法と実績を証明する。"
+  },
+  {
+    "title": "INSIGHTS（洞察）",
+    "file_name": "insights/index.html",
+    "purpose": "SF的知見とデータサイエンスを融合させた論考を発信し、不確実な時代における知的な権威性と生存戦略を提示する。"
+  },
+  {
+    "title": "TERMINAL（終着）",
+    "file_name": "terminal/index.html",
+    "purpose": "迷いを消し去った後の静かな肯定を提供し、具体的なコンタクトやアクションへと繋げるための最終的なインターフェース。"
+  },
+  {
+    "title": "プライバシーポリシー",
+    "file_name": "legal/privacy/index.html",
+    "purpose": "データの取り扱いに関する論理的透明性を確保し、法的な信頼性を担保する。"
+  },
+  {
+    "title": "利用規約",
+    "file_name": "legal/terms/index.html",
+    "purpose": "提供される情報の運用境界と、ユーザーとの秩序ある関係性を定義する。"
+  },
+  {
+    "file_name": "diagnosis/art_20260306_080818-1.html",
+    "title": "デジタル時代の「監視社会」を再定義する：プライバシーと利便性の境界線",
+    "purpose": "監視社会を現代的に再解釈する"
+  },
+  {
+    "file_name": "diagnosis/art_20260306_081628-1.html",
+    "title": "デジタル時代のパノプティコン：現代の監視社会を再解釈する",
+    "purpose": "監視社会を現代的に再解釈する"
+  },
+  {
+    "file_name": "diagnosis/art_20260306_094540-1.html",
+    "title": "「信じて、試す」が最強の活用法：最新テクノロジーを味方につけるための思考法",
+    "purpose": "まずロボット（人類の英知）を信じる。それで自分の状況で検証する。"
+  },
+  {
+    "file_name": "diagnosis/art_20260306_095643-1.html",
+    "title": "AIの提案を自分の武器にする方法：『信頼』と『検証』が生む黄金サイクル",
+    "purpose": "まずはロボット（人類の英知）を信じる。それで自分の状況で検証する。"
+  },
+  {
+    "file_name": "insights/art_20260306_101609-1.html",
+    "title": "監視社会の変遷：『1984』から『サイコパス』まで、描かれた管理社会の恐怖と進化",
+    "purpose": "監視社会を題材にした映画「1984」から日本のアニメ「サイコパス」まで"
+  }
+]

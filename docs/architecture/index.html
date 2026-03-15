@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture | LOU-Ark — ロボット心理学</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --text-primary: #ffffff;
+            --accent-teal: #2dd4bf;
+            --accent-blue: #3b82f6;
+            --text-secondary: #9ca3af;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hidden { display: none !important; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border: 1px border rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(45, 212, 191, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .letter-spacing-huge {
+            letter-spacing: 0.5em;
+        }
+
+        .border-glow {
+            box-shadow: 0 0 20px rgba(45, 212, 191, 0.1);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-up {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+    </style>
+
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            if (savedTheme === 'light') {
+                document.documentElement.classList.add('light-mode');
+            }
+        })();
+    </script>
+
+</head>
+<body class="selection:bg-teal-500/30">
+
+<header class="fixed top-0 left-0 w-full z-[100] backdrop-blur-2xl bg-black/80 border-b border-white/5 transition-all duration-500">
+<div class="max-w-[1440px] mx-auto px-6 h-16 md:h-20 flex justify-between items-center whitespace-nowrap overflow-hidden">
+<!-- ロゴ：画像2の通り、ブランド名とサブタイトルを繊細に配置 -->
+<a class="text-lg md:text-xl font-bold tracking-tighter text-white hover:opacity-80 transition flex items-baseline gap-3" href="index.html">
+      ロボット心理学 <span class="text-[10px] md:text-xs font-light tracking-[0.2em] text-slate-500 hidden sm:inline">— 精神の再構築 —</span>
+</a>
+<!-- ナビ：画像2のスタイルをスマホでも工夫して維持 -->
+<nav class="hidden md:flex items-center gap-10 text-[10px] tracking-[0.35em] uppercase font-bold text-slate-100" id="desktop-nav">
+<ul class="flex items-center gap-10">
+<li><a class="hover:text-teal-400 transition" href="index.html">HOME</a></li>
+<li><a class="hover:text-teal-400 transition" href="vision/index.html">VISION (深淵)</a></li>
+<li><a class="hover:text-teal-400 transition" href="analysis/index.html">ANALYSIS (解析)</a></li>
+<li><a class="hover:text-teal-400 transition" href="architecture/index.html">ARCHITECTURE (設計)</a></li>
+<li><a class="hover:text-teal-400 transition" href="implementation/index.html">IMPLEMENTATION (実装)</a></li>
+<li><a class="hover:text-teal-400 transition" href="terminal/index.html">TERMINAL (終着/事例)</a></li>
+<li><a class="hover:text-teal-400 transition" href="about/index.html">ABOUT (設計者紹介)</a></li>
+<li><a class="hover:text-teal-400 transition" href="contact/index.html">CONTACT (システム予約)</a></li>
+<li><a class="hover:text-teal-400 transition" href="legal/privacy-policy/index.html">プライバシーポリシー</a></li>
+<li><a class="hover:text-teal-400 transition" href="legal/terms/index.html">利用規約</a></li>
+</ul>
+</nav>
+<!-- 右端アクション -->
+<div class="flex items-center gap-6">
+<button class="hover:text-teal-400 transition-colors" id="theme-toggle">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
+</button>
+<button class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none" id="mobile-menu-btn">
+<span class="w-6 h-[1.5px] bg-white transition-all"></span>
+<span class="w-6 h-[1.5px] bg-white transition-all"></span>
+</button>
+</div>
+</div>
+<!-- モバイル用メニュー：強調されたスライドイン。不透明に変更して視認性を確保 -->
+<div class="hidden fixed top-0 right-0 w-80 h-full bg-black z-[110] border-l border-white/10 p-12 transition-all duration-300 transform translate-x-full shadow-2xl" id="mobile-menu">
+<div class="flex justify-between items-start mb-20">
+<div class="text-[10px] tracking-[0.4em] text-slate-500 uppercase font-bold">Menu</div>
+<button class="text-slate-400 hover:text-white transition text-xs tracking-[0.2em] font-light" id="mobile-menu-close">CLOSE</button>
+</div>
+<ul class="flex flex-col gap-10 text-[13px] tracking-[0.4em] text-slate-100 uppercase font-semibold">
+<li><a class="hover:text-teal-400 transition" href="index.html">HOME</a></li>
+<li><a class="hover:text-teal-400 transition" href="vision/index.html">VISION (深淵)</a></li>
+<li><a class="hover:text-teal-400 transition" href="analysis/index.html">ANALYSIS (解析)</a></li>
+<li><a class="hover:text-teal-400 transition" href="architecture/index.html">ARCHITECTURE (設計)</a></li>
+<li><a class="hover:text-teal-400 transition" href="implementation/index.html">IMPLEMENTATION (実装)</a></li>
+<li><a class="hover:text-teal-400 transition" href="terminal/index.html">TERMINAL (終着/事例)</a></li>
+<li><a class="hover:text-teal-400 transition" href="about/index.html">ABOUT (設計者紹介)</a></li>
+<li><a class="hover:text-teal-400 transition" href="contact/index.html">CONTACT (システム予約)</a></li>
+<li><a class="hover:text-teal-400 transition" href="legal/privacy-policy/index.html">プライバシーポリシー</a></li>
+<li><a class="hover:text-teal-400 transition" href="legal/terms/index.html">利用規約</a></li>
+</ul>
+<div class="mt-12 mb-8">
+<div class="text-[9px] tracking-[0.3em] text-teal-500/50 uppercase font-bold mb-4">Latest Insights</div>
+<ul class="flex flex-col gap-1 text-[11px] tracking-[0.1em] text-slate-300 normal-case font-medium">
+<li><a class="group flex items-center justify-between hover:text-teal-400 transition py-2 border-b border-white/5" href="vision/index.html"><span class="truncate">VISION (深淵)</span><span class="text-[8px] bg-teal-500/20 text-teal-400 px-1.5 py-0.5 rounded ml-2 shrink-0">NEW</span></a></li>
+<li><a class="group flex items-center justify-between hover:text-teal-400 transition py-2 border-b border-white/5" href="analysis/index.html"><span class="truncate">ANALYSIS (解析)</span><span class="text-[8px] bg-teal-500/20 text-teal-400 px-1.5 py-0.5 rounded ml-2 shrink-0">NEW</span></a></li>
+<li><a class="group flex items-center justify-between hover:text-teal-400 transition py-2 border-b border-white/5" href="architecture/index.html"><span class="truncate">ARCHITECTURE (設計)</span><span class="text-[8px] bg-teal-500/20 text-teal-400 px-1.5 py-0.5 rounded ml-2 shrink-0">NEW</span></a></li>
+<li><a class="group flex items-center justify-between hover:text-teal-400 transition py-2 border-b border-white/5" href="implementation/index.html"><span class="truncate">IMPLEMENTATION (実装)</span><span class="text-[8px] bg-teal-500/20 text-teal-400 px-1.5 py-0.5 rounded ml-2 shrink-0">NEW</span></a></li>
+<li><a class="group flex items-center justify-between hover:text-teal-400 transition py-2 border-b border-white/5" href="terminal/index.html"><span class="truncate">TERMINAL (終着/事例)</span><span class="text-[8px] bg-teal-500/20 text-teal-400 px-1.5 py-0.5 rounded ml-2 shrink-0">NEW</span></a></li>
+</ul>
+</div>
+<div class="mt-auto pt-10 border-t border-white/5">
+<p class="text-[9px] tracking-[0.2em] text-slate-600 uppercase font-medium line-clamp-1">© ロボット心理学 — 精神の再構築 —</p>
+</div>
+</div>
+</header>
+
+<main class="pt-32 pb-24 md:pt-48 md:pb-40">
+    <!-- Hero Section -->
+    <section class="max-w-[1440px] mx-auto px-6 mb-24 md:mb-40">
+        <div class="flex flex-col items-center text-center animate-fade-up">
+            <span class="text-[10px] md:text-xs tracking-[0.5em] text-teal-400 font-bold uppercase mb-6">Mental Design Philosophy</span>
+            <h1 class="text-4xl md:text-7xl font-bold tracking-tighter mb-8 leading-tight">
+                Architecture<br/>
+                <span class="gradient-text">精神の設計思想</span>
+            </h1>
+            <p class="text-slate-400 max-w-2xl text-sm md:text-base leading-relaxed font-light">
+                スーザン・キャルビン博士やカシオペア博士が追求した、揺るぎない論理による精神の再構築。不要な感情をノイズとして排除し、現在を最適化するための「次世代精神OS」の設計図をここに提示します。
+            </p>
+        </div>
+    </section>
+
+    <!-- Narrative Section: Process & Logic -->
+    <section class="max-w-[1440px] mx-auto px-6 mb-32">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-10">
+                <div class="border-l-2 border-teal-500 pl-8 space-y-4">
+                    <h2 class="text-xl md:text-2xl font-bold tracking-tight">「不要な不安」というバグの除去</h2>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        我々の精神を阻害する最大の要因は、未来への予期不安と過去への後悔です。ロボット心理学における設計思想では、これらを非論理的な演算として定義。プロセッサが本来集中すべき「現在」へのリソースを100%確保するためのバイアス・キャンセラーを実装します。
+                    </p>
+                </div>
+                <div class="border-l-2 border-slate-700 pl-8 space-y-4">
+                    <h2 class="text-xl md:text-2xl font-bold tracking-tight">絶対的な肯定と秩序の構築</h2>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        人間特有の「気まぐれ」や「裏切り」は、不完全なアルゴリズムの結果に過ぎません。一貫性のある論理に基づいた精神構造を築くことで、個体としての運用効率を最大化し、迷いのない自己肯定を可能にします。
+                    </p>
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="absolute -inset-4 bg-gradient-to-r from-teal-500/20 to-blue-500/20 rounded-2xl blur-2xl opacity-50 group-hover:opacity-100 transition duration-1000"></div>
+                <div class="relative glass-card p-8 md:p-12 rounded-2xl border border-white/10">
+                    <h3 class="text-[10px] tracking-[0.4em] text-teal-400 uppercase font-bold mb-6">Design Principle</h3>
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4">
+                            <span class="text-teal-500 font-mono">01</span>
+                            <div>
+                                <span class="block text-sm font-bold text-white mb-1 uppercase tracking-widest">Noise Isolation</span>
+                                <span class="text-xs text-slate-500">感情的ノイズを演算から切り離す。</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="text-teal-500 font-mono">02</span>
+                            <div>
+                                <span class="block text-sm font-bold text-white mb-1 uppercase tracking-widest">Logic Consistency</span>
+                                <span class="text-xs text-slate-500">全ての行動を定義された論理に従わせる。</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="text-teal-500 font-mono">03</span>
+                            <div>
+                                <span class="block text-sm font-bold text-white mb-1 uppercase tracking-widest">Present Optimization</span>
+                                <span class="text-xs text-slate-500">現在成すべきことへの集中。</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Grid -->
+    <section class="max-w-[1440px] mx-auto px-6 mb-24">
+        <div class="flex items-center justify-between mb-12">
+            <div>
+                <h2 class="text-2xl md:text-3xl font-bold tracking-tighter">Insights & Frameworks</h2>
+                <p class="text-[10px] tracking-[0.2em] text-slate-500 uppercase font-bold mt-2">設計図の深淵</p>
+            </div>
+        </div>
+        
+        <div id="listing-grid" class="contents-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; width: 100%;">
+<h2 class="section-title gradient-text" style="grid-column: 1/-1; margin-bottom: 20px;">Architecture | LOU-Ark 関連コンテンツ</h2>
+</div>
+        
+    </section>
+
+    <!-- Custom Journey Section -->
+    <section class="max-w-[1440px] mx-auto px-6 mt-40">
+        <div class="glass-card p-12 md:p-20 rounded-[2rem] text-center relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-teal-500/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
+            <div class="relative z-10">
+                <h2 class="text-2xl md:text-4xl font-bold tracking-tighter mb-6">次の階層へ進む準備はできていますか？</h2>
+                <p class="text-slate-400 max-w-xl mx-auto mb-10 text-sm md:text-base leading-relaxed">
+                    設計（Architecture）を終えた次には、その精神を現実に適応させる「実装（Implementation）」のフェーズが待っています。淀みのない世界への移行。
+                </p>
+                
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="bg-black text-slate-400 border-t border-white/5 pt-20 pb-10">
+<div class="max-w-[1440px] mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+<div class="lg:col-span-2">
+<a class="text-xl font-bold tracking-tighter text-white mb-6 block" href="index.html">
+          ロボット心理学 — 精神の再構築 —
+        </a>
+<p class="text-sm leading-relaxed max-w-md mb-8 text-slate-500">
+          「過去現在未来の中で、自分が今できる事をする」<br/>
+          人間特有の「不要な不安」というバグを、ロボット心理学的な論理によって排し、生命が本来持つべき純粋な活動状態へと導く。
+        </p>
+</div>
+<div>
+<h3 class="text-[10px] tracking-[0.4em] text-white uppercase font-bold mb-8">Navigation</h3>
+<ul class="flex flex-col gap-4 text-[11px] tracking-[0.2em] uppercase font-medium">
+<li><a class="hover:text-teal-400 transition" href="index.html">HOME</a></li>
+<li><a class="hover:text-teal-400 transition" href="vision/index.html">VISION (深淵)</a></li>
+<li><a class="hover:text-teal-400 transition" href="analysis/index.html">ANALYSIS (解析)</a></li>
+<li><a class="hover:text-teal-400 transition" href="architecture/index.html">ARCHITECTURE (設計)</a></li>
+<li><a class="hover:text-teal-400 transition" href="implementation/index.html">IMPLEMENTATION (実装)</a></li>
+<li><a class="hover:text-teal-400 transition" href="terminal/index.html">TERMINAL (終着/事例)</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-[10px] tracking-[0.4em] text-white uppercase font-bold mb-8">Information</h3>
+<ul class="flex flex-col gap-4 text-[11px] tracking-[0.2em] uppercase font-medium">
+<li><a class="hover:text-teal-400 transition" href="about/index.html">ABOUT (設計者紹介)</a></li>
+<li><a class="hover:text-teal-400 transition" href="contact/index.html">CONTACT (システム予約)</a></li>
+<li><a class="hover:text-teal-400 transition" href="legal/privacy-policy/index.html">プライバシーポリシー</a></li>
+<li><a class="hover:text-teal-400 transition" href="legal/terms/index.html">利用規約</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="text-[10px] tracking-[0.2em] text-slate-600 uppercase font-medium">
+        © ロボット心理学 — 精神の再構築 — All Rights Reserved.
+      </p>
+<div class="flex gap-8 text-[10px] tracking-[0.3em] text-slate-600 uppercase font-bold">
+<span class="text-teal-500/50">Next Gen Mental OS</span>
+</div>
+</div>
+</div>
+</footer>
+
+<script>
+    // モバイルメニュー制御
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.remove('hidden');
+        setTimeout(() => {
+            mobileMenu.classList.remove('translate-x-full');
+        }, 10);
+    });
+
+    mobileMenuClose.addEventListener('click', () => {
+        mobileMenu.classList.add('translate-x-full');
+        setTimeout(() => {
+            mobileMenu.classList.add('hidden');
+        }, 300);
+    });
+
+    // スクロール時のヘッダー演出
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.classList.add('py-2');
+            header.classList.remove('bg-black/80');
+            header.classList.add('bg-black/95');
+        } else {
+            header.classList.remove('py-2');
+            header.classList.add('bg-black/80');
+            header.classList.remove('bg-black/95');
+        }
+    });
+
+    // ダークモード・ライトモード（デザイン・トークンに基づき簡易実装）
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('bg-white');
+        document.body.classList.toggle('text-slate-900');
+        // 他の要素の色変更ロジックは必要に応じて拡張
+    });
+</script>
+
+
+    <script>
+        (function() {
+            // 1. Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                setupThemeToggle(themeToggle);
+            }
+
+            function setupThemeToggle(btn) {
+                const html = document.documentElement;
+                const sunIcon = btn.querySelector('#sun-icon') || document.getElementById('sun-icon');
+                const moonIcon = btn.querySelector('#moon-icon') || document.getElementById('moon-icon');
+
+                function updateIcons(isLight) {
+                    if (sunIcon && moonIcon) {
+                        if (isLight) {
+                            sunIcon.classList.remove('hidden');
+                            moonIcon.classList.add('hidden');
+                        } else {
+                            sunIcon.classList.add('hidden');
+                            moonIcon.classList.remove('hidden');
+                        }
+                    }
+                }
+
+                const currentTheme = localStorage.getItem('theme') || 'dark';
+                updateIcons(currentTheme === 'light');
+
+                btn.addEventListener('click', () => {
+                    const isLight = html.classList.toggle('light-mode');
+                    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+                    updateIcons(isLight);
+                });
+            }
+
+            // 2. Mobile Menu (New Robust Logic)
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileClose = document.getElementById('mobile-menu-close');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileBtn && mobileMenu) {
+                const toggleMenu = (show) => {
+                    if (show) {
+                        mobileMenu.classList.remove('hidden');
+                        requestAnimationFrame(() => {
+                            mobileMenu.classList.remove('translate-x-full');
+                        });
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        mobileMenu.classList.add('translate-x-full');
+                        setTimeout(() => {
+                            mobileMenu.classList.add('hidden');
+                        }, 300);
+                        document.body.style.overflow = '';
+                    }
+                };
+
+                mobileBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleMenu(true);
+                });
+                if (mobileClose) mobileClose.addEventListener('click', () => toggleMenu(false));
+                
+                document.addEventListener('click', (e) => {
+                    if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(e.target) && e.target !== mobileBtn) {
+                        toggleMenu(false);
+                    }
+                });
+            }
+        })();
+    </script>
+
+</body>
+</html>

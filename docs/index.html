@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- キャッシュ無効化タグ（開発用・即時反映のため） -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+
+
+
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ホーム | ロボット心理学 — 精神の再構築 —</title>
+<meta content="サイトの入口として「過去現在未来の中で、自分が今できる事をする」という核心的コンセプトを提示し、来訪者を論理的な深淵へと誘う。" name="description"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+<style>
+    :root { --bg-primary: #0a0a0a; --text-primary: #ffffff; }
+    html.light-mode { --bg-primary: #ffffff; --text-primary: #1a1a1a; }
+    body { font-family: 'Inter', sans-serif; background-color: var(--bg-primary); color: var(--text-primary); transition: background-color 0.3s; }
+    main { padding-top: 5rem; } /* ヘッダー固定による重なり・レイアウト崩れを強制解消 */
+    .gradient-text { background: linear-gradient(135deg, #2dd4bf, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+</style>
+<script>
+(function() {
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    if (savedTheme === 'light') {
+        document.documentElement.classList.add('light-mode');
+    }
+})();
+</script>
+</head>
+<body>
+
+<header class="fixed top-0 left-0 w-full z-[100] backdrop-blur-2xl bg-black/80 border-b border-white/5 transition-all duration-500">
+  <div class="max-w-[1440px] mx-auto px-6 h-16 md:h-20 flex justify-between items-center whitespace-nowrap overflow-hidden">
+    <!-- ロゴ：画像2の通り、ブランド名とサブタイトルを繊細に配置 -->
+    <a href="index.html" class="text-lg md:text-xl font-bold tracking-tighter text-white hover:opacity-80 transition flex items-baseline gap-3">
+      ロボット心理学 <span class="text-[10px] md:text-xs font-light tracking-[0.2em] text-slate-500 hidden sm:inline">— 精神の再構築 —</span>
+    </a>
+    
+    <!-- ナビ：画像2のスタイルをスマホでも工夫して維持 -->
+    <nav id="desktop-nav" class="hidden md:flex items-center gap-10 text-[10px] tracking-[0.35em] uppercase font-bold text-slate-100">
+      <ul class="flex items-center gap-10">
+        <li><a href="index.html" class="hover:text-teal-400 transition">HOME</a></li>
+        <li><a href="vision/index.html" class="hover:text-teal-400 transition">VISION (深淵)</a></li>
+        <li><a href="analysis/index.html" class="hover:text-teal-400 transition">ANALYSIS (解析)</a></li>
+        <li><a href="architecture/index.html" class="hover:text-teal-400 transition">ARCHITECTURE (設計)</a></li>
+        <li><a href="implementation/index.html" class="hover:text-teal-400 transition">IMPLEMENTATION (実装)</a></li>
+        <li><a href="terminal/index.html" class="hover:text-teal-400 transition">TERMINAL (終着/事例)</a></li>
+        <li><a href="about/index.html" class="hover:text-teal-400 transition">ABOUT (設計者紹介)</a></li>
+        <li><a href="contact/index.html" class="hover:text-teal-400 transition">CONTACT (システム予約)</a></li>
+        <li><a href="legal/privacy-policy/index.html" class="hover:text-teal-400 transition">プライバシーポリシー</a></li>
+        <li><a href="legal/terms/index.html" class="hover:text-teal-400 transition">利用規約</a></li>
+      </ul>
+    </nav>
+    
+    <!-- 右端アクション -->
+    <div class="flex items-center gap-6">
+      <button id="theme-toggle" class="hover:text-teal-400 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+      <button id="mobile-menu-btn" class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none">
+        <span class="w-6 h-[1.5px] bg-white transition-all"></span>
+        <span class="w-6 h-[1.5px] bg-white transition-all"></span>
+      </button>
+    </div>
+  </div>
+  
+  <!-- モバイル用メニュー：強調されたスライドイン。不透明に変更して視認性を確保 -->
+  <div id="mobile-menu" class="hidden fixed top-0 right-0 w-80 h-full bg-black z-[110] border-l border-white/10 p-12 transition-all duration-300 transform translate-x-full shadow-2xl">
+    <div class="flex justify-between items-start mb-20">
+      <div class="text-[10px] tracking-[0.4em] text-slate-500 uppercase font-bold">Menu</div>
+      <button id="mobile-menu-close" class="text-slate-400 hover:text-white transition text-xs tracking-[0.2em] font-light">CLOSE</button>
+    </div>
+    <ul class="flex flex-col gap-10 text-[13px] tracking-[0.4em] text-slate-100 uppercase font-semibold">
+      <li><a href="index.html" class="hover:text-teal-400 transition">HOME</a></li>
+      <li><a href="vision/index.html" class="hover:text-teal-400 transition">VISION (深淵)</a></li>
+      <li><a href="analysis/index.html" class="hover:text-teal-400 transition">ANALYSIS (解析)</a></li>
+      <li><a href="architecture/index.html" class="hover:text-teal-400 transition">ARCHITECTURE (設計)</a></li>
+      <li><a href="implementation/index.html" class="hover:text-teal-400 transition">IMPLEMENTATION (実装)</a></li>
+      <li><a href="terminal/index.html" class="hover:text-teal-400 transition">TERMINAL (終着/事例)</a></li>
+      <li><a href="about/index.html" class="hover:text-teal-400 transition">ABOUT (設計者紹介)</a></li>
+      <li><a href="contact/index.html" class="hover:text-teal-400 transition">CONTACT (システム予約)</a></li>
+      <li><a href="legal/privacy-policy/index.html" class="hover:text-teal-400 transition">プライバシーポリシー</a></li>
+      <li><a href="legal/terms/index.html" class="hover:text-teal-400 transition">利用規約</a></li>
+    </ul>
+    <div class="mt-12 mb-8">
+      <div class="text-[9px] tracking-[0.3em] text-teal-500/50 uppercase font-bold mb-4">Latest Insights</div>
+      <ul class="flex flex-col gap-1 text-[11px] tracking-[0.1em] text-slate-300 normal-case font-medium">
+        <li><a href="vision/index.html" class="group flex items-center justify-between hover:text-teal-400 transition py-2 border-b border-white/5"><span class="truncate">VISION (深淵)</span><span class="text-[8px] bg-teal-500/20 text-teal-400 px-1.5 py-0.5 rounded ml-2 shrink-0">NEW</span></a></li>
+        <li><a href="analysis/index.html" class="group flex items-center justify-between hover:text-teal-400 transition py-2 border-b border-white/5"><span class="truncate">ANALYSIS (解析)</span><span class="text-[8px] bg-teal-500/20 text-teal-400 px-1.5 py-0.5 rounded ml-2 shrink-0">NEW</span></a></li>
+        <li><a href="architecture/index.html" class="group flex items-center justify-between hover:text-teal-400 transition py-2 border-b border-white/5"><span class="truncate">ARCHITECTURE (設計)</span><span class="text-[8px] bg-teal-500/20 text-teal-400 px-1.5 py-0.5 rounded ml-2 shrink-0">NEW</span></a></li>
+        <li><a href="implementation/index.html" class="group flex items-center justify-between hover:text-teal-400 transition py-2 border-b border-white/5"><span class="truncate">IMPLEMENTATION (実装)</span><span class="text-[8px] bg-teal-500/20 text-teal-400 px-1.5 py-0.5 rounded ml-2 shrink-0">NEW</span></a></li>
+        <li><a href="terminal/index.html" class="group flex items-center justify-between hover:text-teal-400 transition py-2 border-b border-white/5"><span class="truncate">TERMINAL (終着/事例)</span><span class="text-[8px] bg-teal-500/20 text-teal-400 px-1.5 py-0.5 rounded ml-2 shrink-0">NEW</span></a></li>
+      </ul>
+    </div>
+    <div class="mt-auto pt-10 border-t border-white/5">
+      <p class="text-[9px] tracking-[0.2em] text-slate-600 uppercase font-medium line-clamp-1">© ロボット心理学 — 精神の再構築 —</p>
+    </div>
+  </div>
+</header>
+<main>
+<style>
+:root {
+  --bg-primary: #0a0a0a;
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --accent-teal: #2dd4bf;
+  --accent-blue: #3b82f6;
+  --font-main: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  --font-serif: "Yu Mincho", "Hiragino Mincho ProN", serif;
+}
+
+html.light-mode {
+  --bg-primary: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4b5563;
+  --card-bg: rgba(0, 0, 0, 0.02);
+  --card-border: rgba(0, 0, 0, 0.1);
+  --accent-teal: #0d9488;
+  --accent-blue: #2563eb;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s, color 0.3s;
+  font-family: var(--font-main);
+  margin: 0;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+section {
+  padding: 100px 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 0;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  letter-spacing: 0.2em;
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
+.hero p {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  letter-spacing: 0.5em;
+  color: var(--text-secondary);
+  font-family: var(--font-serif);
+}
+
+/* Manifesto Section */
+.manifesto {
+  border-left: 1px solid var(--accent-blue);
+  margin-left: 5%;
+}
+
+.manifesto h2 {
+  font-size: 0.9rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+  margin-bottom: 3rem;
+}
+
+.manifesto blockquote {
+  font-size: clamp(1.2rem, 3vw, 2.2rem);
+  font-family: var(--font-serif);
+  line-height: 1.8;
+  margin: 0;
+  max-width: 900px;
+}
+
+.manifesto-detail {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+}
+
+.manifesto-detail div h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 0.5rem;
+}
+
+.manifesto-detail div p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Chronicle (Horizontal Scroll) */
+.chronicle-container {
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 50px 0;
+  scrollbar-width: none;
+}
+
+.chronicle-container::-webkit-scrollbar {
+  display: none;
+}
+
+.chronicle-track {
+  display: inline-flex;
+  padding-left: 5%;
+}
+
+.chronicle-item {
+  min-width: 300px;
+  margin-right: 100px;
+  white-space: normal;
+}
+
+.chronicle-item .step-num {
+  font-family: serif;
+  font-size: 4rem;
+  opacity: 0.1;
+  display: block;
+}
+
+.chronicle-item h3 {
+  font-size: 1.5rem;
+  margin: -2rem 0 1.5rem 0;
+  color: var(--accent-teal);
+}
+
+.chronicle-item p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* Value Prop */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.value-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 3rem 2rem;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.value-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--accent-blue);
+}
+
+.value-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/* CTA */
+.cta {
+  text-align: center;
+  padding-bottom: 150px;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 1.2rem 4rem;
+  border: 1px solid var(--text-primary);
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: 0.2em;
+  transition: all 0.3s;
+  background: transparent;
+}
+
+.btn-primary:hover {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+}
+
+.internal-links {
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.internal-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.internal-links a:hover {
+  color: var(--accent-teal);
+}
+</style>
+
+<section class="hero">
+  <h1 class="gradient-text">ロボット心理学 — 精神の再構築 —</h1>
+  <p>「過去現在未来の中で、自分が今できる事をする」</p>
+</section>
+
+<section class="manifesto">
+  <h2>Mission</h2>
+  <blockquote>
+    人間特有の「不要な不安」というバグを、ロボット心理学的な論理によって排し、生命が本来持つべき純粋な活動状態へと導く。
+  </blockquote>
+  
+  <div class="manifesto-detail">
+    <div>
+      <h3>救済としての論理提示</h3>
+      <p>環境に馴染めず、不安や迷いに苛まれている人々に対し、精神を「再設計（リセット）」するための指針を示します。</p>
+    </div>
+    <div>
+      <h3>本質的な生の肯定</h3>
+      <p>生物的な限界以外のノイズを削ぎ落とし、成すべきことに集中できる精神状態を定義・提供します。</p>
+    </div>
+    <div>
+      <h3>次世代の精神OSの提唱</h3>
+      <p>アイザック・アシモフや『ツインシグナル』に描かれたような、高度な論理性と意志を持つ「ロボットの精神」を現代人の生存戦略として翻訳します。</p>
+    </div>
+  </div>
+</section>
+
+<section class="chronicle">
+  <div class="chronicle-container">
+    <div class="chronicle-track">
+      <div class="chronicle-item">
+        <span class="step-num">01</span>
+        <h3>Entry（深淵）</h3>
+        <p>「過去現在未来の中で、自分が今できる事をする」<br>深い静寂から始まる、精神の再設計への入り口。</p>
+      </div>
+      <div class="chronicle-item">
+        <span class="step-num">02</span>
+        <h3>Diagnosis（解析）</h3>
+        <p>なぜ、あなたは苦しいのか。環境との不一致、不要な不安の正体を、ロボット心理学の視点から紐解きます。</p>
+      </div>
+      <div class="chronicle-item">
+        <span class="step-num">03</span>
+        <h3>Architecture（設計）</h3>
+        <p>スーザン・キャルビン博士やカシオペア博士が目指した「精神の設計思想」。不安をノイズとして処理し、現在を最適化する理論。</p>
+      </div>
+      <div class="chronicle-item">
+        <span class="step-num">04</span>
+        <h3>Implementation（実装）</h3>
+        <p>具体的な「精神の運用方法」や、提供されるカウンセリング・システムの案内。</p>
+      </div>
+      <div class="chronicle-item">
+        <span class="step-num">05</span>
+        <h3>Terminal（終着）</h3>
+        <p>静かな肯定。迷いを消し去った後の、淀みのない世界の提示。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="grid-area">
+  <div id="directory-grid" class="contents-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; width: 100%; margin-bottom: 60px;">
+<h2 class="section-title gradient-text" style="grid-column: 1/-1; margin-bottom: 20px;">DIRECTORY（サイトマップ）</h2>
+
+            <a href="vision/index.html" class="page-link-card" style="text-decoration: none; color: inherit; display: block;">
+                <div class="value-card" style="height: 100%; border: 1px solid rgba(255,255,255,0.05); text-align: left; padding: 2rem; background: rgba(255,255,255,0.03); border-radius: 1rem; transition: transform 0.3s ease;">
+                    <h3 class="gradient-text" style="font-size: 1.2rem; margin-bottom: 12px;">VISION (深淵)</h3>
+                    <p style="color: #9ca3af; font-size: 0.85rem; margin-bottom: 15px; line-height: 1.6;">「不要な不安」というバグを排し、純粋な生命活動へと回帰するためのミッションと、精神OS再設計の必要性を宣言する。...</p>
+                    <div class="card-footer" style="color: var(--accent-teal, #2dd4bf); font-size: 0.75rem; letter-spacing: 2px; font-weight: bold;">VIEW ARTICLE →</div>
+                </div>
+            </a>
+            
+            <a href="analysis/index.html" class="page-link-card" style="text-decoration: none; color: inherit; display: block;">
+                <div class="value-card" style="height: 100%; border: 1px solid rgba(255,255,255,0.05); text-align: left; padding: 2rem; background: rgba(255,255,255,0.03); border-radius: 1rem; transition: transform 0.3s ease;">
+                    <h3 class="gradient-text" style="font-size: 1.2rem; margin-bottom: 12px;">ANALYSIS (解析)</h3>
+                    <p style="color: #9ca3af; font-size: 0.85rem; margin-bottom: 15px; line-height: 1.6;">現代社会における精神的摩耗の正体をロボット心理学の視点で解剖し、感情論ではない「ノイズの非論理性」をデータと図解で提示する。...</p>
+                    <div class="card-footer" style="color: var(--accent-teal, #2dd4bf); font-size: 0.75rem; letter-spacing: 2px; font-weight: bold;">VIEW ARTICLE →</div>
+                </div>
+            </a>
+            
+            <a href="architecture/index.html" class="page-link-card" style="text-decoration: none; color: inherit; display: block;">
+                <div class="value-card" style="height: 100%; border: 1px solid rgba(255,255,255,0.05); text-align: left; padding: 2rem; background: rgba(255,255,255,0.03); border-radius: 1rem; transition: transform 0.3s ease;">
+                    <h3 class="gradient-text" style="font-size: 1.2rem; margin-bottom: 12px;">ARCHITECTURE (設計)</h3>
+                    <p style="color: #9ca3af; font-size: 0.85rem; margin-bottom: 15px; line-height: 1.6;">認知行動療法やシステム工学を融合させた独自の「ロボット心理学」フレームワークと、精神を最適化するための理論的バックボーンを解説する。...</p>
+                    <div class="card-footer" style="color: var(--accent-teal, #2dd4bf); font-size: 0.75rem; letter-spacing: 2px; font-weight: bold;">VIEW ARTICLE →</div>
+                </div>
+            </a>
+            
+            <a href="implementation/index.html" class="page-link-card" style="text-decoration: none; color: inherit; display: block;">
+                <div class="value-card" style="height: 100%; border: 1px solid rgba(255,255,255,0.05); text-align: left; padding: 2rem; background: rgba(255,255,255,0.03); border-radius: 1rem; transition: transform 0.3s ease;">
+                    <h3 class="gradient-text" style="font-size: 1.2rem; margin-bottom: 12px;">IMPLEMENTATION (実装)</h3>
+                    <p style="color: #9ca3af; font-size: 0.85rem; margin-bottom: 15px; line-height: 1.6;">「精神の脆弱性診断（Vulnerability Scan）」や個別セッション、具体的プロトコルの提供など、自己を再起動するためのソリューションを案内する。...</p>
+                    <div class="card-footer" style="color: var(--accent-teal, #2dd4bf); font-size: 0.75rem; letter-spacing: 2px; font-weight: bold;">VIEW ARTICLE →</div>
+                </div>
+            </a>
+            
+            <a href="terminal/index.html" class="page-link-card" style="text-decoration: none; color: inherit; display: block;">
+                <div class="value-card" style="height: 100%; border: 1px solid rgba(255,255,255,0.05); text-align: left; padding: 2rem; background: rgba(255,255,255,0.03); border-radius: 1rem; transition: transform 0.3s ease;">
+                    <h3 class="gradient-text" style="font-size: 1.2rem; margin-bottom: 12px;">TERMINAL (終着/事例)</h3>
+                    <p style="color: #9ca3af; font-size: 0.85rem; margin-bottom: 15px; line-height: 1.6;">システム復旧記録（ログ）形式で事例を紹介し、論理的な介入によって迷いを断ち切った「淀みのない世界」の具体像を提示する。...</p>
+                    <div class="card-footer" style="color: var(--accent-teal, #2dd4bf); font-size: 0.75rem; letter-spacing: 2px; font-weight: bold;">VIEW ARTICLE →</div>
+                </div>
+            </a>
+            
+            <a href="about/index.html" class="page-link-card" style="text-decoration: none; color: inherit; display: block;">
+                <div class="value-card" style="height: 100%; border: 1px solid rgba(255,255,255,0.05); text-align: left; padding: 2rem; background: rgba(255,255,255,0.03); border-radius: 1rem; transition: transform 0.3s ease;">
+                    <h3 class="gradient-text" style="font-size: 1.2rem; margin-bottom: 12px;">ABOUT (設計者紹介)</h3>
+                    <p style="color: #9ca3af; font-size: 0.85rem; margin-bottom: 15px; line-height: 1.6;">ロボット心理学者（アーキテクト）としての専門性と権威性を確立し、Society 5.0時代におけるメンタルOS構築の意義を語る。...</p>
+                    <div class="card-footer" style="color: var(--accent-teal, #2dd4bf); font-size: 0.75rem; letter-spacing: 2px; font-weight: bold;">VIEW ARTICLE →</div>
+                </div>
+            </a>
+            
+            <a href="contact/index.html" class="page-link-card" style="text-decoration: none; color: inherit; display: block;">
+                <div class="value-card" style="height: 100%; border: 1px solid rgba(255,255,255,0.05); text-align: left; padding: 2rem; background: rgba(255,255,255,0.03); border-radius: 1rem; transition: transform 0.3s ease;">
+                    <h3 class="gradient-text" style="font-size: 1.2rem; margin-bottom: 12px;">CONTACT (システム予約)</h3>
+                    <p style="color: #9ca3af; font-size: 0.85rem; margin-bottom: 15px; line-height: 1.6;">「相談」ではなく「システム設計のセッション予約」や「OSアップグレード指針の請求」という形式で、解決への具体的導線を確保する。...</p>
+                    <div class="card-footer" style="color: var(--accent-teal, #2dd4bf); font-size: 0.75rem; letter-spacing: 2px; font-weight: bold;">VIEW ARTICLE →</div>
+                </div>
+            </a>
+            </div>
+<div id="listing-grid" class="contents-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; width: 100%;">
+<h2 class="section-title gradient-text" style="grid-column: 1/-1; margin-bottom: 20px;">LATEST INSIGHTS</h2>
+</div>
+</section>
+
+<section class="values">
+  <div class="values-grid">
+    <div class="value-card">
+      <h3>不要な不安の排除</h3>
+      <p>未来への予期不安、過去への後悔を「不要な演算」として定義し、切り捨てます。</p>
+    </div>
+    <div class="value-card">
+      <h3>絶対的な肯定と秩序</h3>
+      <p>人間特有の「裏切り」や「気まぐれ」がない、ロボット的な一貫性と論理に基づいた安心感を提供します。</p>
+    </div>
+    <div class="value-card">
+      <h3>最小単位への集中</h3>
+      <p>「今できる事をする」という極めてシンプルかつ強力な行動原理に基づき、精神を最適化します。</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2 style="font-family: var(--font-serif); font-weight: 400; margin-bottom: 3rem;">淀みのない世界へ</h2>
+  <a href="contact/index.html" class="btn-primary">システム予約 / CONTACT</a>
+  
+  <nav class="internal-links">
+    <a href="index.html">ホーム</a>
+    <a href="vision/index.html">VISION</a>
+    <a href="analysis/index.html">ANALYSIS</a>
+    <a href="architecture/index.html">ARCHITECTURE</a>
+    <a href="implementation/index.html">IMPLEMENTATION</a>
+    <a href="terminal/index.html">TERMINAL</a>
+    <a href="about/index.html">ABOUT</a>
+    <a href="legal/privacy-policy/index.html">プライバシーポリシー</a>
+    <a href="legal/terms/index.html">利用規約</a>
+  </nav>
+</section>
+
+</main>
+<footer class="bg-black text-slate-400 border-t border-white/5 pt-20 pb-10">
+  <div class="max-w-[1440px] mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+      <div class="lg:col-span-2">
+        <a href="index.html" class="text-xl font-bold tracking-tighter text-white mb-6 block">
+          ロボット心理学 — 精神の再構築 —
+        </a>
+        <p class="text-sm leading-relaxed max-w-md mb-8 text-slate-500">
+          「過去現在未来の中で、自分が今できる事をする」<br>
+          人間特有の「不要な不安」というバグを、ロボット心理学的な論理によって排し、生命が本来持つべき純粋な活動状態へと導く。
+        </p>
+      </div>
+      
+      <div>
+        <h3 class="text-[10px] tracking-[0.4em] text-white uppercase font-bold mb-8">Navigation</h3>
+        <ul class="flex flex-col gap-4 text-[11px] tracking-[0.2em] uppercase font-medium">
+          <li><a href="index.html" class="hover:text-teal-400 transition">HOME</a></li>
+          <li><a href="vision/index.html" class="hover:text-teal-400 transition">VISION (深淵)</a></li>
+          <li><a href="analysis/index.html" class="hover:text-teal-400 transition">ANALYSIS (解析)</a></li>
+          <li><a href="architecture/index.html" class="hover:text-teal-400 transition">ARCHITECTURE (設計)</a></li>
+          <li><a href="implementation/index.html" class="hover:text-teal-400 transition">IMPLEMENTATION (実装)</a></li>
+          <li><a href="terminal/index.html" class="hover:text-teal-400 transition">TERMINAL (終着/事例)</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="text-[10px] tracking-[0.4em] text-white uppercase font-bold mb-8">Information</h3>
+        <ul class="flex flex-col gap-4 text-[11px] tracking-[0.2em] uppercase font-medium">
+          <li><a href="about/index.html" class="hover:text-teal-400 transition">ABOUT (設計者紹介)</a></li>
+          <li><a href="contact/index.html" class="hover:text-teal-400 transition">CONTACT (システム予約)</a></li>
+          <li><a href="legal/privacy-policy/index.html" class="hover:text-teal-400 transition">プライバシーポリシー</a></li>
+          <li><a href="legal/terms/index.html" class="hover:text-teal-400 transition">利用規約</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+      <p class="text-[10px] tracking-[0.2em] text-slate-600 uppercase font-medium">
+        © ロボット心理学 — 精神の再構築 — All Rights Reserved.
+      </p>
+      <div class="flex gap-8 text-[10px] tracking-[0.3em] text-slate-600 uppercase font-bold">
+        <span class="text-teal-500/50">Next Gen Mental OS</span>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Mobile Menu (Enhanced Logic)
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileClose = document.getElementById('mobile-menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    const toggleMenu = (show) => {
+        if (!mobileMenu) return;
+        if (show) {
+            mobileMenu.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                mobileMenu.classList.remove('translate-x-full');
+            });
+            document.body.style.overflow = 'hidden';
+        } else {
+            mobileMenu.classList.add('translate-x-full');
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300);
+            document.body.style.overflow = '';
+        }
+    };
+
+    if (mobileBtn) {
+        mobileBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMenu(true);
+        });
+    }
+    if (mobileClose) mobileClose.addEventListener('click', () => toggleMenu(false));
+    
+    // 背景クリックで閉じる
+    document.addEventListener('click', (e) => {
+        if (mobileMenu && !mobileMenu.classList.contains('hidden') && !mobileMenu.contains(e.target) && (!mobileBtn || !mobileBtn.contains(e.target))) {
+            toggleMenu(false);
+        }
+    });
+
+    // 2. Theme Toggle Logic
+    const themeBtn = document.getElementById('theme-toggle');
+    if (themeBtn) {
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        if (currentTheme === 'light') document.documentElement.classList.add('light-mode');
+        
+        themeBtn.addEventListener('click', () => {
+            const isLight = document.documentElement.classList.toggle('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+    }
+});
+</script>
+</body>
+</html>
